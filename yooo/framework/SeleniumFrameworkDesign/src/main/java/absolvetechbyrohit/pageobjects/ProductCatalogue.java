@@ -27,6 +27,9 @@ public class ProductCatalogue extends AbstractComponents {
 	@FindBy(css=".mb-3")
 	List<WebElement> products;
 	
+	@FindBy(css=".ng-animating")
+	WebElement spinner;
+	
 	By productsBy = By.cssSelector(".mb-3");
 	By addToCart= By.cssSelector(".card-body button:last-of-type");
 	By toastMessage = By.cssSelector("#toast-container");
@@ -45,12 +48,10 @@ public class ProductCatalogue extends AbstractComponents {
 		WebElement prod = getProductByName(productName);
 		prod.findElement(addToCart).click();
 		waitForElementToAppear(toastMessage);
+		//waitForElementToDisappear(spinner);
+		waitForWebElementToAppear(spinner);
 	}
-//	public void loginApplication(String email, String password) {
-//		userEmail.sendKeys(email);
-//		passwordEle.sendKeys(password);
-//		submit.click();
-//	}
+
 	
 	public void goTo() {
 		driver.get("https://rahulshettyacademy.com/client");
